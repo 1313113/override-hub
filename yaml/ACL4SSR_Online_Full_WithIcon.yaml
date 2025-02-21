@@ -1,5 +1,5 @@
 proxy-groups:
-  # ── 基础代理组 ─────────────────────────────
+  # 【基础选择组】所有后续分流组均依赖基础组
   - name: 节点选择
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png
     type: select
@@ -10,6 +10,7 @@ proxy-groups:
       - 狮城节点
       - 日本节点
       - 美国节点
+      - 英国节点
       - 韩国节点
       - 手动切换
       - DIRECT
@@ -25,6 +26,300 @@ proxy-groups:
     include-all: true
     interval: 300
     tolerance: 50
+
+  # 【应用/网站分流组】（均开启“任选全部”功能，且均添加了“英国节点”）
+  - name: 电报消息
+    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png
+    include-all: true
+    type: select
+    proxies:
+      - 节点选择
+      - 自动选择
+      - 狮城节点
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 美国节点
+      - 英国节点
+      - 韩国节点
+      - 手动切换
+      - DIRECT
+
+  - name: OpenAi
+    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png
+    include-all: true
+    type: select
+    proxies:
+      - 节点选择
+      - 自动选择
+      - 狮城节点
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 美国节点
+      - 英国节点
+      - 韩国节点
+      - 手动切换
+      - DIRECT
+
+  - name: 油管视频
+    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png
+    include-all: true
+    type: select
+    proxies:
+      - 节点选择
+      - 自动选择
+      - 狮城节点
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 美国节点
+      - 英国节点
+      - 韩国节点
+      - 手动切换
+      - DIRECT
+
+  - name: 奈飞视频
+    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netflix.png
+    include-all: true
+    type: select
+    proxies:
+      - 节点选择
+      - 自动选择
+      - 狮城节点
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 美国节点
+      - 英国节点
+      - 韩国节点
+      - 手动切换
+      - DIRECT
+
+  - name: Discord
+    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Discord.png
+    include-all: true
+    type: select
+    proxies:
+      - 节点选择
+      - 自动选择
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 美国节点
+      - 英国节点
+      - 韩国节点
+      - 手动切换
+      - DIRECT
+
+  - name: 脸书社交
+    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Facebook.png
+    include-all: true
+    type: select
+    proxies:
+      - 节点选择
+      - 自动选择
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 美国节点
+      - 英国节点
+      - 韩国节点
+      - 手动切换
+      - DIRECT
+
+  - name: TikTok
+    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
+    include-all: true
+    type: select
+    proxies:
+      - 节点选择
+      - 自动选择
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 美国节点
+      - 英国节点
+      - 韩国节点
+      - 手动切换
+      - DIRECT
+
+  - name: 谷歌服务
+    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google.png
+    include-all: true
+    type: select
+    proxies:
+      - 节点选择
+      - 自动选择
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 美国节点
+      - 英国节点
+      - 韩国节点
+      - 手动切换
+      - DIRECT
+
+  # 【其它业务分流组】（区域节点如有则添加“英国节点”）
+  - name: 巴哈姆特
+    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bahamut.png
+    include-all: true
+    type: select
+    proxies:
+      - 台湾节点
+      - 节点选择
+      - 手动切换
+      - DIRECT
+
+  - name: 哔哩哔哩
+    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/bilibili.png
+    include-all: true
+    type: select
+    proxies:
+      - 全球直连
+      - 台湾节点
+      - 香港节点
+      - 英国节点
+
+  - name: 国外媒体
+    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ForeignMedia.png
+    include-all: true
+    type: select
+    proxies:
+      - 节点选择
+      - 自动选择
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 美国节点
+      - 英国节点
+      - 韩国节点
+      - 手动切换
+      - DIRECT
+
+  - name: 国内媒体
+    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/DomesticMedia.png
+    include-all: true
+    type: select
+    proxies:
+      - DIRECT
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 英国节点
+      - 手动切换
+
+  - name: 谷歌FCM
+    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
+    include-all: true
+    type: select
+    proxies:
+      - DIRECT
+      - 节点选择
+      - 美国节点
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 英国节点
+      - 韩国节点
+      - 手动切换
+
+  - name: 微软Bing
+    icon: https://testingcf.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/bing.png
+    include-all: true
+    type: select
+    proxies:
+      - DIRECT
+      - 节点选择
+      - 美国节点
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 英国节点
+      - 韩国节点
+      - 手动切换
+
+  - name: 微软云盘
+    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/OneDrive.png
+    include-all: true
+    type: select
+    proxies:
+      - DIRECT
+      - 节点选择
+      - 美国节点
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 英国节点
+      - 韩国节点
+      - 手动切换
+
+  - name: 微软服务
+    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Microsoft.png
+    include-all: true
+    type: select
+    proxies:
+      - 节点选择
+      - DIRECT
+      - 美国节点
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 英国节点
+      - 韩国节点
+      - 手动切换
+
+  - name: 苹果服务
+    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png
+    include-all: true
+    type: select
+    proxies:
+      - DIRECT
+      - 节点选择
+      - 美国节点
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 英国节点
+      - 韩国节点
+      - 手动切换
+
+  - name: 游戏平台
+    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Game.png
+    include-all: true
+    type: select
+    proxies:
+      - DIRECT
+      - 节点选择
+      - 美国节点
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 英国节点
+      - 韩国节点
+      - 手动切换
+
+  - name: 网易音乐
+    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netease_Music.png
+    include-all: true
+    filter: (?i)网易|音乐|NetEase|Music
+    type: select
+    proxies:
+      - DIRECT
+      - 节点选择
+      - 自动选择
 
   - name: 全球直连
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Direct.png
@@ -60,10 +355,11 @@ proxy-groups:
       - 狮城节点
       - 日本节点
       - 美国节点
+      - 英国节点
       - 韩国节点
       - 手动切换
 
-  # ── 区域节点代理组 ─────────────────────────
+  # 【地区筛选代理组】（区域节点组，各自均支持 include‑all）
   - name: 香港节点
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png
     include-all: true
@@ -84,6 +380,14 @@ proxy-groups:
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png
     include-all: true
     filter: (?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United\s?States
+    type: url-test
+    interval: 300
+    tolerance: 50
+
+  - name: 英国节点
+    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_Kingdom.png
+    include-all: true
+    filter: (?i)英|UK|United\s?Kingdom|Britain|英国
     type: url-test
     interval: 300
     tolerance: 50
@@ -112,286 +416,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
 
-  - name: 英国节点
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_Kingdom.png
-    include-all: true
-    filter: (?i)英|UK|United\s?Kingdom|Britain|GB
-    type: url-test
-    interval: 300
-    tolerance: 50
-
-  # ── 常用服务代理组 ─────────────────────────
-  - name: 电报消息
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png
-    type: select
-    proxies:
-      - 节点选择
-      - 自动选择
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 美国节点
-      - 韩国节点
-      - 手动切换
-      - DIRECT
-
-  - name: OpenAi
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png
-    type: select
-    proxies:
-      - 节点选择
-      - 自动选择
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 美国节点
-      - 韩国节点
-      - 手动切换
-      - DIRECT
-
-  - name: Discord
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Discord.png
-    type: select
-    proxies:
-      - 节点选择
-      - 自动选择
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 美国节点
-      - 韩国节点
-      - 手动切换
-      - DIRECT
-
-  - name: 脸书社交
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Facebook.png
-    type: select
-    proxies:
-      - 节点选择
-      - 自动选择
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 美国节点
-      - 韩国节点
-      - 手动切换
-      - DIRECT
-
-  - name: TikTok
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
-    type: select
-    proxies:
-      - 节点选择
-      - 自动选择
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 美国节点
-      - 韩国节点
-      - 手动切换
-      - DIRECT
-
-  - name: 谷歌服务
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google.png
-    type: select
-    proxies:
-      - 节点选择
-      - 自动选择
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 美国节点
-      - 韩国节点
-      - 手动切换
-      - DIRECT
-
-  - name: 油管视频
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png
-    type: select
-    proxies:
-      - 节点选择
-      - 自动选择
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 美国节点
-      - 韩国节点
-      - 手动切换
-      - DIRECT
-
-  - name: 奈飞视频
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netflix.png
-    type: select
-    # 已删除“奈飞节点”
-    proxies:
-      - 节点选择
-      - 自动选择
-      - 狮城节点
-      - 香港节点
-      - 台湾节点
-      - 日本节点
-      - 美国节点
-      - 韩国节点
-      - 手动切换
-      - DIRECT
-
-  - name: 巴哈姆特
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bahamut.png
-    type: select
-    proxies:
-      - 台湾节点
-      - 节点选择
-      - 自动选择
-      - 手动切换
-      - DIRECT
-
-  - name: 哔哩哔哩
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/bilibili.png
-    type: select
-    proxies:
-      - 节点选择
-      - 自动选择
-      - 台湾节点
-      - 香港节点
-      - 手动切换
-      - DIRECT
-
-  - name: 国外媒体
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ForeignMedia.png
-    type: select
-    proxies:
-      - 节点选择
-      - 自动选择
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 美国节点
-      - 韩国节点
-      - 手动切换
-      - DIRECT
-
-  - name: 国内媒体
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/DomesticMedia.png
-    type: select
-    proxies:
-      - 节点选择
-      - 自动选择
-      - DIRECT
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 手动切换
-
-  - name: 谷歌FCM
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
-    type: select
-    proxies:
-      - DIRECT
-      - 节点选择
-      - 自动选择
-      - 美国节点
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 韩国节点
-      - 手动切换
-
-  - name: 微软Bing
-    icon: https://testingcf.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/bing.png
-    type: select
-    proxies:
-      - DIRECT
-      - 节点选择
-      - 自动选择
-      - 美国节点
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 韩国节点
-      - 手动切换
-
-  - name: 微软云盘
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/OneDrive.png
-    type: select
-    proxies:
-      - DIRECT
-      - 节点选择
-      - 自动选择
-      - 美国节点
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 韩国节点
-      - 手动切换
-
-  - name: 微软服务
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Microsoft.png
-    type: select
-    proxies:
-      - 节点选择
-      - 自动选择
-      - DIRECT
-      - 美国节点
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 韩国节点
-      - 手动切换
-
-  - name: 苹果服务
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png
-    type: select
-    proxies:
-      - 节点选择
-      - 自动选择
-      - DIRECT
-      - 美国节点
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 韩国节点
-      - 手动切换
-
-  - name: 游戏平台
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Game.png
-    type: select
-    proxies:
-      - 节点选择
-      - 自动选择
-      - DIRECT
-      - 美国节点
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 韩国节点
-      - 手动切换
-
-  - name: 网易音乐
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netease_Music.png
-    type: select
-    include-all: true
-    filter: (?i)网易|音乐|NetEase|Music
-    proxies:
-      - DIRECT
-      - 节点选择
-      - 自动选择
-
-  # ── 综合代理组 ─────────────────────────────
+  # 【总模式组】汇总以上所有分流组
   - name: GLOBAL
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png
     include-all: true
@@ -402,12 +427,12 @@ proxy-groups:
       - 自动选择
       - 电报消息
       - OpenAi
+      - 油管视频
+      - 奈飞视频
       - Discord
       - 脸书社交
       - TikTok
       - 谷歌服务
-      - 油管视频
-      - 奈飞视频
       - 巴哈姆特
       - 哔哩哔哩
       - 国外媒体
@@ -426,10 +451,10 @@ proxy-groups:
       - 香港节点
       - 日本节点
       - 美国节点
+      - 英国节点
       - 台湾节点
       - 狮城节点
       - 韩国节点
-      - 英国节点
 
 rule-providers:
   LocalAreaNetwork:
