@@ -1,4 +1,4 @@
-# DNS 模块：防止 DNS 泄露
+# DNS 配置（移植自 surfing.yaml，防止 DNS 泄露）
 dns:
   enable: true
   prefer-h3: true
@@ -30,9 +30,8 @@ dns:
     - https://dns.google/dns-query#🌐 DNS解析
     - https://cloudflare-dns.com/dns-query#🌐 DNS解析
 
-# =================代理组=================
 proxy-groups:
-  # 【基础选择组】（所有后续分流组均依赖此组）
+  # 【基础选择组】所有后续分流组均依赖此组
   - name: 节点选择
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png
     type: select
@@ -60,7 +59,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
 
-  # 【应用/网站分流组】（均启用 include-all，节点列表中均加入英国节点）
+  # 【应用／网站分流组】（均启用 include-all，且均添加英国节点）
   - name: 电报消息
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png
     include-all: true
@@ -116,7 +115,6 @@ proxy-groups:
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netflix.png
     include-all: true
     type: select
-    # 已移除奈飞节点；其它节点均可用于分流
     proxies:
       - 节点选择
       - 自动选择
@@ -393,7 +391,7 @@ proxy-groups:
       - 韩国节点
       - 手动切换
 
-  # 【地区筛选代理组】（各区域组均支持 include-all）
+  # 【地区筛选代理组】（各区域节点组均支持 include-all）
   - name: 香港节点
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png
     include-all: true
@@ -450,7 +448,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
 
-  # 【总模式组】汇总所有分流组
+  # 【总模式组】汇总以上所有分流组
   - name: GLOBAL
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png
     include-all: true
@@ -490,7 +488,6 @@ proxy-groups:
       - 狮城节点
       - 韩国节点
 
-# =================规则提供者=================
 rule-providers:
   LocalAreaNetwork:
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/LocalAreaNetwork.list
@@ -737,7 +734,8 @@ rule-providers:
     interval: 86400
     format: text
     type: http
-  # 新增：防 DNS 泄露规则提供者
+
+# 防 DNS 泄露：新增规则提供者与规则
   prevent_dns_leak:
     type: http
     interval: 86400
@@ -745,9 +743,8 @@ rule-providers:
     format: text
     url: "https://raw.githubusercontent.com/xishang0128/rules/main/clash%20or%20stash/prevent_dns_leak/prevent_dns_leak_domain.list"
 
-# =================规则=================
 rules:
-  # 防DNS泄露规则，优先匹配
+  # 插入防 DNS 泄露规则（利用原有最后匹配规则“漏网之鱼”）
   - "RULE-SET,prevent_dns_leak,漏网之鱼"
   - "RULE-SET,LocalAreaNetwork,全球直连"
   - "RULE-SET,UnBan,全球直连"
