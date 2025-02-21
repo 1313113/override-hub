@@ -1,37 +1,8 @@
-# DNS 配置（移植自 surfing.yaml，防止 DNS 泄露）
-dns:
-  enable: true
-  prefer-h3: true
-  ipv6: true
-  listen: 0.0.0.0:1053
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.0/15
-  fake-ip-filter:
-    - "*"
-    - "+.lan"
-    - "connect.rom.miui.com"
-    - "localhost.ptlogin2.qq.com"
-    - "+.market.xiaomi.com"
-  direct-nameserver:
-    - 119.29.29.29
-    - 1.12.12.12
-    - 223.5.5.5
-    - 223.6.6.6
-  proxy-server-nameserver:
-    - 119.29.29.29
-    - 1.12.12.12
-    - 223.5.5.5
-    - 223.6.6.6
-  nameserver-policy:
-    "RULE-SET:CN_域名,CN_IP":
-      - https://doh.pub/dns-query#🌎 全球直连
-      - https://dns.alidns.com/dns-query#🌎 全球直连
-  nameserver:
-    - https://dns.google/dns-query#🌐 DNS解析
-    - https://cloudflare-dns.com/dns-query#🌐 DNS解析
-
+# ----------------------------
+# 代理组配置
+# ----------------------------
 proxy-groups:
-  # 【基础选择组】所有后续分流组均依赖此组
+  # 【基础选择组】
   - name: 节点选择
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png
     type: select
@@ -59,7 +30,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
 
-  # 【应用／网站分流组】（均启用 include-all，且均添加英国节点）
+  # 【应用/网站分流组】（均启用 include-all，并在节点列表中加入英国节点）
   - name: 电报消息
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png
     include-all: true
@@ -118,6 +89,7 @@ proxy-groups:
     proxies:
       - 节点选择
       - 自动选择
+      # “奈飞节点”已删除
       - 狮城节点
       - 香港节点
       - 台湾节点
@@ -391,7 +363,7 @@ proxy-groups:
       - 韩国节点
       - 手动切换
 
-  # 【地区筛选代理组】（各区域节点组均支持 include-all）
+  # 【地区筛选代理组】（各区域组均支持 include-all）
   - name: 香港节点
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png
     include-all: true
@@ -488,6 +460,9 @@ proxy-groups:
       - 狮城节点
       - 韩国节点
 
+# ----------------------------
+# 规则提供者（rule-providers）
+# ----------------------------
 rule-providers:
   LocalAreaNetwork:
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/LocalAreaNetwork.list
@@ -692,50 +667,7 @@ rule-providers:
     interval: 86400
     format: text
     type: http
-  private_Lan:
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/classical/private.list
-    path: ./ruleset/private_Lan.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  category-ads-all:
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/classical/category-ads-all.list
-    path: ./ruleset/category-ads-all.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  TikTok:
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.list
-    path: ./ruleset/TikTok.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  Facebook:
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Facebook/Facebook.list
-    path: ./ruleset/Facebook.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  Google:
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Google/Google.list
-    path: ./ruleset/Google.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  Discord:
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Discord/Discord.list
-    path: ./ruleset/Discord.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-
-# 防 DNS 泄露：新增规则提供者与规则
+  # 新增防DNS泄露规则提供者
   prevent_dns_leak:
     type: http
     interval: 86400
@@ -743,8 +675,11 @@ rule-providers:
     format: text
     url: "https://raw.githubusercontent.com/xishang0128/rules/main/clash%20or%20stash/prevent_dns_leak/prevent_dns_leak_domain.list"
 
+# ----------------------------
+# 分流规则（rules）
+# ----------------------------
 rules:
-  # 插入防 DNS 泄露规则（利用原有最后匹配规则“漏网之鱼”）
+  # 将防DNS泄露规则放到最前面，目标使用 MATCH 规则的目标（此处为“漏网之鱼”）
   - "RULE-SET,prevent_dns_leak,漏网之鱼"
   - "RULE-SET,LocalAreaNetwork,全球直连"
   - "RULE-SET,UnBan,全球直连"
@@ -783,3 +718,37 @@ rules:
   - "RULE-SET,Download,全球直连"
   - "GEOIP,CN,全球直连"
   - "MATCH,漏网之鱼"
+
+# ----------------------------
+# DNS 配置（防DNS泄露及完整解析配置，照搬自 surfing.yaml）
+# ----------------------------
+dns:
+  enable: true
+  prefer-h3: true
+  ipv6: true
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.0/15
+  fake-ip-filter:
+    - "*"
+    - "+.lan"
+    - "connect.rom.miui.com"
+    - "localhost.ptlogin2.qq.com"
+    - "+.market.xiaomi.com"
+  direct-nameserver:
+    - 119.29.29.29
+    - 1.12.12.12
+    - 223.5.5.5
+    - 223.6.6.6
+  proxy-server-nameserver:
+    - 119.29.29.29
+    - 1.12.12.12
+    - 223.5.5.5
+    - 223.6.6.6
+  nameserver-policy:
+    "RULE-SET:CN_域名,CN_IP":
+      - https://doh.pub/dns-query#🌎 全球直连
+      - https://dns.alidns.com/dns-query#🌎 全球直连
+  nameserver:
+    - https://dns.google/dns-query#🌐 DNS解析
+    - https://cloudflare-dns.com/dns-query#🌐 DNS解析
