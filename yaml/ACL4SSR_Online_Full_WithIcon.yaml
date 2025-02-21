@@ -1,5 +1,38 @@
+# DNS 模块：防止 DNS 泄露
+dns:
+  enable: true
+  prefer-h3: true
+  ipv6: true
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.0/15
+  fake-ip-filter:
+    - "*"
+    - "+.lan"
+    - "connect.rom.miui.com"
+    - "localhost.ptlogin2.qq.com"
+    - "+.market.xiaomi.com"
+  direct-nameserver:
+    - 119.29.29.29
+    - 1.12.12.12
+    - 223.5.5.5
+    - 223.6.6.6
+  proxy-server-nameserver:
+    - 119.29.29.29
+    - 1.12.12.12
+    - 223.5.5.5
+    - 223.6.6.6
+  nameserver-policy:
+    "RULE-SET:CN_域名,CN_IP":
+      - https://doh.pub/dns-query#🌎 全球直连
+      - https://dns.alidns.com/dns-query#🌎 全球直连
+  nameserver:
+    - https://dns.google/dns-query#🌐 DNS解析
+    - https://cloudflare-dns.com/dns-query#🌐 DNS解析
+
+# =================代理组=================
 proxy-groups:
-  # 【基础选择组】所有后续分流组均依赖基础组
+  # 【基础选择组】（所有后续分流组均依赖此组）
   - name: 节点选择
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png
     type: select
@@ -27,7 +60,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
 
-  # 【应用/网站分流组】（均开启“任选全部”功能，且均添加了“英国节点”）
+  # 【应用/网站分流组】（均启用 include-all，节点列表中均加入英国节点）
   - name: 电报消息
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png
     include-all: true
@@ -83,6 +116,7 @@ proxy-groups:
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netflix.png
     include-all: true
     type: select
+    # 已移除奈飞节点；其它节点均可用于分流
     proxies:
       - 节点选择
       - 自动选择
@@ -164,7 +198,7 @@ proxy-groups:
       - 手动切换
       - DIRECT
 
-  # 【其它业务分流组】（区域节点如有则添加“英国节点”）
+  # 【其它业务分流组】
   - name: 巴哈姆特
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bahamut.png
     include-all: true
@@ -359,7 +393,7 @@ proxy-groups:
       - 韩国节点
       - 手动切换
 
-  # 【地区筛选代理组】（区域节点组，各自均支持 include‑all）
+  # 【地区筛选代理组】（各区域组均支持 include-all）
   - name: 香港节点
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png
     include-all: true
@@ -416,7 +450,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
 
-  # 【总模式组】汇总以上所有分流组
+  # 【总模式组】汇总所有分流组
   - name: GLOBAL
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png
     include-all: true
@@ -456,6 +490,7 @@ proxy-groups:
       - 狮城节点
       - 韩国节点
 
+# =================规则提供者=================
 rule-providers:
   LocalAreaNetwork:
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/LocalAreaNetwork.list
@@ -702,8 +737,18 @@ rule-providers:
     interval: 86400
     format: text
     type: http
+  # 新增：防 DNS 泄露规则提供者
+  prevent_dns_leak:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: text
+    url: "https://raw.githubusercontent.com/xishang0128/rules/main/clash%20or%20stash/prevent_dns_leak/prevent_dns_leak_domain.list"
 
+# =================规则=================
 rules:
+  # 防DNS泄露规则，优先匹配
+  - "RULE-SET,prevent_dns_leak,漏网之鱼"
   - "RULE-SET,LocalAreaNetwork,全球直连"
   - "RULE-SET,UnBan,全球直连"
   - "RULE-SET,BanAD,广告拦截"
